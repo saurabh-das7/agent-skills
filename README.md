@@ -18,11 +18,32 @@ A skill is a folder containing a `SKILL.md` file with YAML frontmatter and plain
 
 ## Skills in this repo
 
-| Skill | Domain | What it does | Status |
-|-------|--------|--------------|--------|
-| [`ad-copy-evaluator`](./ad-copy-evaluator/) | Ad Tech · LLM Eval | Evaluates search ad copy against a structured, intent-aware rubric across 5 dimensions | ✅ Ready |
+| Skill | Slash command | Domain | What it does | Status |
+|-------|--------------|--------|--------------|--------|
+| [`ad-copy-evaluator`](./ad-copy-evaluator/) | `/ad-copy-eval` | Ad Tech · LLM Eval | Evaluates search ad copy against a 5-dimension, intent-aware rubric | ✅ Ready |
+| [`search-ad-copy-generator`](./search-ad-copy-generator/) | `/ad-copy-gen` | Ad Tech · Content | Generates search ad copy variants (strong / mixed / weak) for a product and keyword | ✅ Ready |
+| [`pm-doc-writer`](./pm-doc-writer/) | `/pm-doc` | PM · AI Products | Writes PM-quality documentation for AI products — problem statement through retrospective | ✅ Ready |
+| [`ai-product-reviewer`](./ai-product-reviewer/) | `/ai-review` | PM · AI Products | Reviews AI product ideas across 6 dimensions before you commit to building | ✅ Ready |
 
 More skills planned as I work through problems worth packaging. Each one starts as a repeated workflow — something I find myself re-explaining to an agent more than twice.
+
+---
+
+## How these skills work together
+
+These four skills form a connected workflow for AI product builders — not standalone utilities:
+
+```
+/ai-review          Evaluate a product idea before investing time
+      ↓
+/pm-doc             Document it properly before writing code
+      ↓
+/ad-copy-gen        Generate search ad copy variants for the product
+      ↓
+/ad-copy-eval       Score and select the best variant before serving
+```
+
+Start with `/ai-review` to pressure-test an idea. Use `/pm-doc` to build the documentation foundation. Then use `/ad-copy-gen` and `/ad-copy-eval` together for the ad copy quality workflow.
 
 ---
 
@@ -35,7 +56,7 @@ More skills planned as I work through problems worth packaging. Each one starts 
 3. Go to **Settings → Capabilities → Skills → Upload**
 4. Upload the zip
 
-Once installed, the skill is available in **any chat on your account** — not project-specific. It triggers automatically when your message matches the skill description, or you can invoke it explicitly with `/skill-name`.
+Once installed, the skill is available in **any chat on your account** — not project-specific. It triggers automatically when your message matches the skill description, or you can invoke it explicitly with the slash command.
 
 ### Option B — Claude Code (terminal)
 
@@ -45,7 +66,7 @@ Once installed, the skill is available in **any chat on your account** — not p
    ```
 2. Or into `.claude/skills/` inside a specific repo for project-only access
 3. Start a new Claude Code session — skills load at session start
-4. Type `/ad-copy-eval` or describe the task and Claude will trigger it automatically
+4. Type the slash command or describe the task and Claude will trigger it automatically
 
 ### Option C — Other agents
 
@@ -65,6 +86,23 @@ These principles come from building the [LLM Eval Toolkit](https://github.com/sa
 
 ---
 
+## Repo structure
+
+```
+agent-skills/
+├── README.md
+├── ad-copy-evaluator/
+│   └── SKILL.md          — evaluates search ad copy against a rubric
+├── search-ad-copy-generator/
+│   └── SKILL.md          — generates search ad copy variants
+├── pm-doc-writer/
+│   └── SKILL.md          — writes PM documentation for AI products
+└── ai-product-reviewer/
+    └── SKILL.md          — reviews AI product ideas before you build
+```
+
+---
+
 ## Related repos
 
 | Repo | What it contains |
@@ -72,7 +110,7 @@ These principles come from building the [LLM Eval Toolkit](https://github.com/sa
 | [llm-eval-toolkit](https://github.com/saurabh-das7/llm-eval-toolkit) | Search Ad Copy Evaluator — a Streamlit app that evaluates LLM-generated ad copy end-to-end |
 | [pm-tpm-playbooks](https://github.com/saurabh-das7/pm-tpm-playbooks) | Frameworks and playbooks for AI product development and measurement |
 
-The `ad-copy-evaluator` skill in this repo is the packaged workflow version of the evaluation rubric built into the LLM Eval Toolkit app. Same rubric, different surface — one is a deployable product, one is an installable workflow.
+The skills in this repo are the packaged workflow versions of the frameworks built across these two repos. Same logic, different surface — one is a deployable product or reference doc, one is an installable agent workflow.
 
 ---
 
