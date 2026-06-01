@@ -24,6 +24,7 @@ A skill is a folder containing a `SKILL.md` file with YAML frontmatter and plain
 | [`search-ad-copy-generator`](./search-ad-copy-generator/) | `/ad-copy-gen` | Ad Tech · Content | Generates search ad copy variants (strong / mixed / weak) for a product and keyword | ✅ Ready |
 | [`pm-doc-writer`](./pm-doc-writer/) | `/pm-doc` | PM · AI Products | Writes PM-quality documentation for AI products — problem statement through retrospective | ✅ Ready |
 | [`ai-product-reviewer`](./ai-product-reviewer/) | `/ai-review` | PM · AI Products | Reviews AI product ideas across 6 dimensions before you commit to building | ✅ Ready |
+| [`issue-categorizer`](./issue-categorizer/) | `/issue-categorize` | Ops · PM | Categorises operational tickets into a structured taxonomy with three modes and confidence scoring | ✅ Ready |
 
 More skills planned as I work through problems worth packaging. Each one starts as a repeated workflow — something I find myself re-explaining to an agent more than twice.
 
